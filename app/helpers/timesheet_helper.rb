@@ -13,22 +13,22 @@ module TimesheetHelper
   def link_to_csv_export(timesheet)
     link_to('CSV',
             {
-              :controller => 'timesheet',
-              :action => 'report',
-              :format => 'csv',
-              :timesheet => timesheet.to_param
-            },
-            :method => 'post',
-            :class => 'icon icon-timesheet')
+      :controller => 'timesheet',
+      :action => 'report',
+      :format => 'csv',
+      :timesheet => timesheet.to_param
+    },
+      :method => 'post',
+      :class => 'icon icon-timesheet')
   end
-  
+
   def toggle_issue_arrows(issue_id)
     js = "toggleTimeEntries('#{issue_id}'); return false;"
-    
+
     return toggle_issue_arrow(issue_id, 'toggle-arrow-closed.gif', js, false) +
       toggle_issue_arrow(issue_id, 'toggle-arrow-open.gif', js, true)
   end
-  
+
   def toggle_issue_arrow(issue_id, image, js, hide=false)
     style = "display:none;" if hide
     style ||= ''
@@ -37,10 +37,10 @@ module TimesheetHelper
                 link_to_function(image_tag(image, :plugin => "timesheet_plugin"), js),
                 :class => "toggle-" + issue_id.to_s,
                 :style => style
-                )
-    
+               )
+
   end
-  
+
   def displayed_time_entries_for_issue(time_entries)
     time_entries.collect(&:hours).sum
   end
@@ -49,7 +49,7 @@ module TimesheetHelper
     available_projects = timesheet.allowed_projects
     selected_projects = timesheet.projects.collect(&:id)
     selected_projects = available_projects.collect(&:id) if selected_projects.blank?
-    
+
     options_from_collection_for_select(available_projects,
                                        :id,
                                        :name,
@@ -70,4 +70,9 @@ module TimesheetHelper
                                        selected_users)
 
   end
+
+  def tracker_options(timesheet, trackers)
+    options_from_collection_for_select(trackers, :id, :name, timesheet.trackers)
+  end
+
 end

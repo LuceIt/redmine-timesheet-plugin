@@ -4,5 +4,7 @@ timesheet_date_to_label: A
 timesheet_project_label: Proyecto
 timesheet_activities_label: Actividad
 timesheet_users_label: Usuarios
+timesheet_trackers_label: Tipo
+timesheet_group_by: Agrupado por
 timesheet_showing_users: 'mostrando tiempos para: '
 timesheet_permalink: '(Permalink a esta hoja de tiempos)'

@@ -118,6 +118,11 @@ class TimesheetTest < ActiveSupport::TestCase
       assert_kind_of Array, timesheet.activities
     end
 
+    should 'should initialize trackers to an Array' do
+      timesheet = Timesheet.new
+      assert_kind_of Array, timesheet.trackers
+    end
+
     context "users" do
       setup do
         project = Project.generate!
